@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load staticfiles %}
+  <link rel='stylesheet' type='text/css' href="{% static 'game/css/styles.css' %}">
+  <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+  <script src="{% static 'game/js/main.js' %}"></script>
+  <script src="{% static 'game/js/jquery.cookie.js' %}"></script>
+</head>
+
+<body>
+  <div class='game'>
+    <div class='settings'>
+      <button class='create'>Create Game</button>
+      <div class='measure'>
+        <span>Width (10 - 50):</span>
+        <input maxlength='2' id='width' type="text">
+      </div>
+      <div class='measure'>
+        <span>Height (10 - 50):</span>
+        <input maxlength='2' id='height' type="text">
+      </div>
+      <button class='history'>Hall Of Fame</button>
+    </div>
+    <div class='table'></div>
+  </div>
+
+  <div class='list'>
+    <button class='back'>Back</button>
+    <div class='entry'>
+      <p> Name </p>
+      <p> Width </p>
+      <p> Height </p>
+    </div>
+    {% block content %}
+      {% for entry in object_list %}
+        <div class='entry'>
+          <p> {{ entry.player_name }} </p>
+          <p> {{ entry.table_width }} </p>
+          <p> {{ entry.table_height }} </p>
+        </div>
+      {% endfor %}
+    {% endblock %}
+  </div>
+
+
+</body>
+
+</html>
